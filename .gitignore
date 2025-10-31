@@ -49,6 +49,7 @@ debug.log
 
 # ides
 /.idea
+.vscode
 
 
 *.tsbuildinfo
