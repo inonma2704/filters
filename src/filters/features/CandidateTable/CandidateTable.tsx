@@ -29,7 +29,7 @@ const CandidateTable: React.FC<CandidateTableProps> = ({ candidates, isFetching 
         </Box>
       ) : null}
 
-      <DataGrid rows={candidates ?? []} columns={columns} disableRowSelectionOnClick hideFooter />
+      <DataGrid rows={candidates ?? []} columns={columns} disableRowSelectionOnClick hideFooter localeText={{ noRowsLabel: 'No candidates available' }} />
     </Box>
   )
 }

@@ -88,7 +88,7 @@ export const CandidateFilterToolbar: React.FC<CandidateFilterToolbarProps> = ({ 
 
       <FormControl sx={{ minWidth: 160 }} size="small">
         <InputLabel>{texts.domain}</InputLabel>
-        <Select label={texts.domain} value={domain ?? ''} onChange={handleChange} name="domain">
+        <Select label={texts.domain} value={domain ?? ''} onChange={handleChange} name="domain" disabled={!name}>
           <MenuItem value="">{texts.all}</MenuItem>
           {DOMAINS.map((d) => (
             <MenuItem key={d} value={d}>
@@ -100,7 +100,7 @@ export const CandidateFilterToolbar: React.FC<CandidateFilterToolbarProps> = ({ 
 
       <FormControl sx={{ minWidth: 160 }} size="small">
         <InputLabel>{texts.status}</InputLabel>
-        <Select label={texts.status} value={status ?? ''} onChange={handleChange} name="status">
+        <Select label={texts.status} value={status ?? ''} onChange={handleChange} name="status" disabled={!domain}>
           <MenuItem value="">{texts.all}</MenuItem>
           {STATUSES.map((s) => (
             <MenuItem key={s} value={s}>
@@ -110,7 +110,26 @@ export const CandidateFilterToolbar: React.FC<CandidateFilterToolbarProps> = ({ 
         </Select>
       </FormControl>
 
-      <TextField label={texts.experience} variant="outlined" size="small" type="number" value={experience ?? ''} onChange={handleChange} name="experience" sx={{ minWidth: 200 }} />
+      <TextField
+        label={texts.experience}
+        variant="outlined"
+        size="small"
+        type="number"
+        value={experience ?? ''}
+        onChange={handleChange}
+        name="experience"
+        sx={{
+          minWidth: 200,
+          // remove arrows
+          '& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
+            WebkitAppearance: 'none',
+            margin: 0,
+          },
+          '& input[type=number]': {
+            MozAppearance: 'textfield', // Firefox
+          },
+        }}
+      />
 
       <Button variant="outlined" color="secondary" onClick={handleReset} sx={{ ml: 'auto' }}>
         {texts.reset}
