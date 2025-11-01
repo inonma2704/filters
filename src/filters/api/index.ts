@@ -1,7 +1,6 @@
 import { Candidate } from '../types'
 import { candidates } from './mock/mock'
 
-// eslint-disable-next-line import/no-unused-modules
 export type CandidateFilters = Partial<Candidate>
 
 export const getCandidates = async (filters?: CandidateFilters) => {
