@@ -1,13 +1,11 @@
 import { useMemo, useState } from 'react'
-import { DataGrid } from '@mui/x-data-grid'
-import { Box } from '@mui/material'
 import { useFetchCandidates } from './filters/hooks/useFetchCandidates'
 import { CandidateFilters, getCandidates } from './filters/api'
-import { useCandidateColumns } from './filters/features/CandidateTable/hooks/useCandidateColumns'
+import CandidateTable from './filters/features/CandidateTable/CandidateTable'
+import { Candidate } from './filters/types'
 
 export default function App() {
   const [filters] = useState<CandidateFilters>({})
-  const columns = useCandidateColumns()
 
   // Memoize filters to prevent unnecessary rerenders
   const memoizedFilters = useMemo(() => filters, [filters])
@@ -19,9 +17,7 @@ export default function App() {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: 400, width: '100%', minWidth: 600 }}>
-        <DataGrid rows={candidates ?? []} columns={columns} disableRowSelectionOnClick hideFooter />
-      </Box>
+      <CandidateTable candidates={(candidates ?? []) as Candidate[]} />
     </>
   )
 }
